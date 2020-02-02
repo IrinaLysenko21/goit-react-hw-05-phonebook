@@ -1,0 +1,15 @@
+@value variables: '../../variables.module.css';
+@value color-dark-grey, color-light-grey from variables;
+
+.search {
+  margin: 0 auto;
+  padding: 10px 15px;
+  width: 300px;
+  color: color-dark-grey;
+  border: 1px solid #00008b;
+  border-radius: 5px;
+}
+
+.search::placeholder {
+  color: color-light-grey;
+}

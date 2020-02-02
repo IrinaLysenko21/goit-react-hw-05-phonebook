@@ -1,0 +1,18 @@
+@value variables: '../variables.module.css';
+@value primary-font-stack from variables;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 10px 15px;
+  font-family: primary-font-stack;
+  border-radius: 10px;
+}
+
+.heading {
+  text-align: center;
+  font-size: 36px;
+  color: #4682b4;
+}

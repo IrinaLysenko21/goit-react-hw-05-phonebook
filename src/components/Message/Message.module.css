@@ -1,0 +1,16 @@
+.container {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 80px;
+  padding: 0 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  background-color: rgb(241, 125, 125);
+  border-radius: 3px;
+}

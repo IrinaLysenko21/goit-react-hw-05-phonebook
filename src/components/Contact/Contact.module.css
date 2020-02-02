@@ -1,0 +1,34 @@
+@value variables: '../../variables.module.css';
+@value color-dark-grey, primary-box-shadow from variables;
+
+.contactWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contact {
+  display: inline-block;
+}
+
+.name {
+  font-size: 18px;
+  color: color-dark-grey;
+}
+
+.number {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.deleteBtn {
+  height: 100%;
+  padding: 7px 15px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #4682b4;
+  border: none;
+  border-radius: 5px;
+  box-shadow: primary-box-shadow;
+  cursor: pointer;
+}

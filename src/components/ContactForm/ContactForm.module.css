@@ -1,0 +1,36 @@
+@value variables: '../../variables.module.css';
+@value color-dark-grey, primary-box-shadow from variables;
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.label {
+  margin-bottom: 15px;
+}
+
+.inputName {
+  margin-right: 15px;
+  font-size: 18px;
+  color: color-dark-grey;
+}
+
+.input {
+  padding: 10px 15px;
+  border: 1px solid #00008b;
+  border-radius: 5px;
+}
+
+.submitBtn {
+  padding: 10px 25px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #4682b4;
+  border: none;
+  border-radius: 5px;
+  box-shadow: primary-box-shadow;
+  cursor: pointer;
+}
