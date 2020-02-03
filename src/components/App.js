@@ -6,6 +6,7 @@ import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 import ContactForm from './ContactForm/ContactForm';
 import Message from './Message/Message';
+import * as localStorage from '../services/localStorage';
 import styles from './App.module.css';
 import popTransition from '../transitions/pop.module.css';
 import appearTransition from '../transitions/appear.module.css';
@@ -15,21 +16,15 @@ const notyf = new Notyf();
 
 class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: [],
     filter: '',
     contactExists: false,
   };
 
   componentDidMount() {
-    const persistedContacts = localStorage.getItem('contacts');
+    const contacts = localStorage.getContacts();
 
-    if (persistedContacts) {
-      const contacts = JSON.parse(persistedContacts);
+    if (contacts) {
       this.setState({ contacts });
     }
   }
@@ -38,7 +33,7 @@ class App extends Component {
     const { contacts } = this.state;
 
     if (prevState.contacts !== contacts) {
-      localStorage.setItem('contacts', JSON.stringify(contacts));
+      localStorage.saveContacts(contacts);
     }
   }
 
@@ -53,6 +48,13 @@ class App extends Component {
 
     if (newContact.name.trim() === '' || newContact.number.trim() === '') {
       return notyf.error('Please fill out the form');
+    }
+    if (
+      !newContact.number.match(
+        /^((8|\+3)[-]?)?(\(?\d{3}\)?[-]?)?[\d\- ]{7,10}$/,
+      )
+    ) {
+      return notyf.error('Wrong number format');
     }
 
     const matchingContact = this.findMatchingContact(contacts, newContact.name);
