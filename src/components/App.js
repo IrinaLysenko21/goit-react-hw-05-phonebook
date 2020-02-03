@@ -50,9 +50,7 @@ class App extends Component {
       return notyf.error('Please fill out the form');
     }
     if (
-      !newContact.number.match(
-        /^((8|\+3)[-]?)?(\(?\d{3}\)?[-]?)?[\d\- ]{7,10}$/,
-      )
+      !newContact.number.match(/^(\+38|\+3)?[\s-]?(\(?[\d]*\))?[\d\s\- ]*$/)
     ) {
       return notyf.error('Wrong number format');
     }
@@ -126,10 +124,12 @@ class App extends Component {
           <Filter value={filter} handleChangeFilter={this.changeFilter} />
         </CSSTransition>
 
-        <ContactList
-          contacts={filteredContacts}
-          handleDeleteContact={this.deleteContact}
-        />
+        {contacts.length > 0 && (
+          <ContactList
+            contacts={filteredContacts}
+            handleDeleteContact={this.deleteContact}
+          />
+        )}
 
         <CSSTransition
           in={contactExists}
