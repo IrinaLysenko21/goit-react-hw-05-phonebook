@@ -2,14 +2,21 @@
 @value color-dark-grey, color-light-grey from variables;
 
 .search {
+  box-sizing: border-box;
   margin: 0 auto;
   padding: 10px 15px;
-  width: 300px;
+  width: 280px;
   color: color-dark-grey;
-  border: 1px solid #00008b;
+  border: 1px solid #015666;
   border-radius: 5px;
 }
 
 .search::placeholder {
   color: color-light-grey;
+}
+
+@media (min-width: 768px) {
+  .search {
+    width: 300px;
+  }
 }

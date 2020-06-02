@@ -46,30 +46,24 @@ class ContactForm extends Component {
 
     return (
       <form className={styles.contactForm} onSubmit={this.handleSubmit}>
-        <label htmlFor={nameId} className={styles.label}>
-          <span className={styles.inputName}>Enter name:</span>
-          <input
-            id={nameId}
-            className={styles.input}
-            type="text"
-            name="name"
-            placeholder="Enter name..."
-            value={name}
-            onChange={this.handleChange}
-          />
-        </label>
-        <label htmlFor={numberId} className={styles.label}>
-          <span className={styles.inputName}>Enter number:</span>
-          <input
-            id={numberId}
-            className={styles.input}
-            type="text"
-            name="number"
-            placeholder="Enter phone number..."
-            value={number}
-            onChange={this.handleChange}
-          />
-        </label>
+        <input
+          id={nameId}
+          className={styles.input}
+          type="text"
+          name="name"
+          placeholder="Enter name..."
+          value={name}
+          onChange={this.handleChange}
+        />
+        <input
+          id={numberId}
+          className={styles.input}
+          type="text"
+          name="number"
+          placeholder="Enter phone number..."
+          value={number}
+          onChange={this.handleChange}
+        />
         <button type="submit" className={styles.submitBtn}>
           Save contact
         </button>

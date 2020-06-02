@@ -5,11 +5,11 @@ import { Notyf } from 'notyf';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 import ContactForm from './ContactForm/ContactForm';
-import Message from './Message/Message';
 import * as localStorage from '../services/localStorage';
 import styles from './App.module.css';
 import popTransition from '../transitions/pop.module.css';
-import appearTransition from '../transitions/appear.module.css';
+import slideTransition from '../transitions/slide.module.css';
+
 import 'notyf/notyf.min.css';
 
 const notyf = new Notyf();
@@ -18,7 +18,6 @@ class App extends Component {
   state = {
     contacts: [],
     filter: '',
-    contactExists: false,
   };
 
   componentDidMount() {
@@ -57,17 +56,7 @@ class App extends Component {
 
     const matchingContact = this.findMatchingContact(contacts, newContact.name);
 
-    if (matchingContact) {
-      return this.setState(
-        prevState => ({ contactExists: !prevState.contactExists }),
-        () =>
-          setTimeout(() => {
-            this.setState(prevState => ({
-              contactExists: !prevState.contactExists,
-            }));
-          }, 2000),
-      );
-    }
+    if (matchingContact) return notyf.error('This contact already exists');
 
     this.setState(
       prevState => ({
@@ -102,19 +91,17 @@ class App extends Component {
     contacts.find(contact => contact.name === name);
 
   render() {
-    const { contacts, filter, contactExists } = this.state;
+    const { contacts, filter } = this.state;
     const filteredContacts = this.filterContacts(contacts, filter);
 
     return (
       <div className={styles.wrapper}>
-        <CSSTransition in timeout={500} classNames={appearTransition} appear>
-          <h1 className={styles.heading}>Phonebook</h1>
-        </CSSTransition>
-
+        <h1 className={styles.heading}>Phonebook</h1>
         <ContactForm handleAddContact={this.addContact} />
-
         <h2 className={styles.heading}>Contacts</h2>
-
+        {contacts.length === 0 && (
+          <h2 className={styles.defaultText}>No contacts saved...</h2>
+        )}
         <CSSTransition
           in={contacts.length > 1}
           timeout={250}
@@ -123,21 +110,16 @@ class App extends Component {
         >
           <Filter value={filter} handleChangeFilter={this.changeFilter} />
         </CSSTransition>
-
-        {contacts.length > 0 && (
+        <CSSTransition
+          in={contacts.length > 0}
+          timeout={250}
+          classNames={slideTransition}
+          unmountOnExit
+        >
           <ContactList
             contacts={filteredContacts}
             handleDeleteContact={this.deleteContact}
           />
-        )}
-
-        <CSSTransition
-          in={contactExists}
-          timeout={250}
-          classNames={popTransition}
-          unmountOnExit
-        >
-          <Message />
         </CSSTransition>
       </div>
     );

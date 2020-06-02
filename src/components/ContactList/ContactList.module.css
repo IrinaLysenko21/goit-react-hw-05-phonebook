@@ -1,12 +1,30 @@
 .contactList {
   margin: 0 auto;
-  padding: 0;
+  padding: 20px 0 0 0;
   width: 100%;
   list-style: none;
 }
 
 @media (min-width: 458px) {
   .contactList {
-    width: 400px;
+    width: 70%;
+  }
+}
+
+@media (min-width: 768px) {
+  .contactList {
+    width: 60%;
+  }
+}
+
+@media (min-width: 968px) {
+  .contactList {
+    width: 50%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .contactList {
+    width: 40%;
   }
 }

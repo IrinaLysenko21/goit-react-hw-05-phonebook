@@ -5,7 +5,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 20px;
   padding: 10px 15px;
   font-family: primary-font-stack;
   border-radius: 10px;
@@ -13,6 +12,23 @@
 
 .heading {
   text-align: center;
-  font-size: 36px;
-  color: #4682b4;
+  font-size: 26px;
+  color: #015666;
+}
+
+.defaultText {
+  text-align: center;
+  color: #969696;
+}
+
+@media (min-width: 768px) {
+  .heading {
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .heading {
+    font-size: 36px;
+  }
 }
